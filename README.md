@@ -68,12 +68,12 @@
 - 所有VBScript关键字自动转换为标准Pascal大小写格式
 - 例如：`if` → `If`，`then` → `Then`，`end if` → `End If`
 - 支持的关键字包括：
-    - 控制流：`If`, `Then`, `Else`, `End If`, `For`, `Next`, `While`, `Wend`, `Do`, `Loop`
-    - 函数：`Function`, `End Function`, `Sub`, `End Sub`
-    - 选择：`Select`, `Case`, `End Select`
-    - 属性：`Property`, `End Property`
-    - 变量：`Dim`, `Set`
-    - 特殊值：`Empty`, `Nothing`, `Null`, `True`, `False`
+  - 控制流：`If`, `Then`, `Else`, `End If`, `For`, `Next`, `While`, `Wend`, `Do`, `Loop`
+  - 函数：`Function`, `End Function`, `Sub`, `End Sub`
+  - 选择：`Select`, `Case`, `End Select`
+  - 属性：`Property`, `End Property`
+  - 变量：`Dim`, `Set`
+  - 特殊值：`Empty`, `Nothing`, `Null`, `True`, `False`
 
 **2. VBScript内置函数大小写**
 - 所有内置函数转换为标准大小写
@@ -84,29 +84,29 @@
 
 **3. 运算符空格规则**
 - **算术运算符**：两侧各添加一个空格
-    - `+`, `-`, `*`, `/`, `\`, `^`, `Mod`
-    - 例如：`a+b` → `a + b`，`x*y` → `x * y`
+  - `+`, `-`, `*`, `/`, `\`, `^`, `Mod`
+  - 例如：`a+b` → `a + b`，`x*y` → `x * y`
 - **比较运算符**：两侧各添加一个空格
-    - `=`, `<>`, `<`, `>`, `<=`, `>=`, `Is`
-    - 例如：`a=b` → `a = b`，`x<>y` → `x <> y`
+  - `=`, `<>`, `<`, `>`, `<=`, `>=`, `Is`
+  - 例如：`a=b` → `a = b`，`x<>y` → `x <> y`
 - **逻辑运算符**：两侧各添加一个空格
-    - `Not`, `And`, `Or`, `Xor`, `Eqv`, `Imp`
-    - 例如：`a And b` → `a And b`
+  - `Not`, `And`, `Or`, `Xor`, `Eqv`, `Imp`
+  - 例如：`a And b` → `a And b`
 - **字符串连接**：两侧各添加一个空格
-    - `&` 连接运算符
-    - 例如：`"Hello"&"World"` → `"Hello" & "World"`
+  - `&` 连接运算符
+  - 例如：`"Hello"&"World"` → `"Hello" & "World"`
 
 **4. 缩进规则**
 - **控制结构缩进**：内部语句缩进一级（4个空格）
-    - `If...Then...End If` 语句块
-    - `For...Next` 循环
-    - `While...Wend` 循环
-    - `Do...Loop` 循环
-    - `Function...End Function` 函数
-    - `Sub...End Sub` 过程
+  - `If...Then...End If` 语句块
+  - `For...Next` 循环
+  - `While...Wend` 循环
+  - `Do...Loop` 循环
+  - `Function...End Function` 函数
+  - `Sub...End Sub` 过程
 - **Select Case缩进**：特殊处理
-    - `Case` 语句缩进一级
-    - `Case` 内容缩进两级
+  - `Case` 语句缩进一级
+  - `Case` 内容缩进两级
   ```vbscript
   Select Case variable
       Case "value1"
@@ -151,7 +151,7 @@ Wend
 
 #### keywords.yaml 文件说明
 - 只要把词加入 keywords.yaml 的 keywords 分组（例如 exception: [on, error, resume, goto]），无需改代码，即会自动按关键字配色。
-  点号后的方法名（如 Response.Write、Server.MapPath）会按方法颜色高亮，方法清单来自 keywords.yaml 的 objects 段。
+点号后的方法名（如 Response.Write、Server.MapPath）会按方法颜色高亮，方法清单来自 keywords.yaml 的 objects 段。
 - 希望大小写格式化也跟进，可在 case_map 增加条目，例如：
 > goto: GoTo
 - 若发现某个对象方法未着色，把方法名加到该对象的 methods 列表即可。
@@ -208,9 +208,9 @@ Wend
 1. 在 PyCharm 中，点击右上角的 "Run Configurations"
 2. 点击 "+" 按钮，选择 "Gradle"
 3. 配置以下设置：
-    - Name: `Run Plugin`
-    - Gradle project: 选择项目根目录
-    - Tasks: `runIde`
+   - Name: `Run Plugin`
+   - Gradle project: 选择项目根目录
+   - Tasks: `runIde`
 4. 点击 "Apply" 和 "OK"
 
 #### 构建和运行插件

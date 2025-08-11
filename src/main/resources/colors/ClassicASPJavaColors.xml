@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scheme name="Classic ASP Java Colors" version="142" parent_scheme="Darcula">
+  <metaInfo>
+    <property name="created">2024-01-01T00:00:00</property>
+    <property name="description">Java风格的Classic ASP语法高亮配色方案</property>
+  </metaInfo>
+
+  <!-- 保留词用橘色 -->
+  <attributes>
+    <option name="JAVA_KEYWORD">
+      <value>
+        <option name="FOREGROUND">ff8c00</option>
+        <option name="FONT_TYPE">1</option>
+      </value>
+    </option>
+  </attributes>
+
+  <!-- 变量用白色 -->
+  <attributes>
+    <option name="JAVA_VARIABLE">
+      <value>
+        <option name="FOREGROUND">ffffff</option>
+      </value>
+    </option>
+  </attributes>
+
+  <!-- function用蓝色 -->
+  <attributes>
+    <option name="JAVA_FUNCTION">
+      <value>
+        <option name="FOREGROUND">4169e1</option>
+        <option name="FONT_TYPE">1</option>
+      </value>
+    </option>
+  </attributes>
+
+  <!-- 内置函数用黄色 -->
+  <attributes>
+    <option name="JAVA_BUILTIN_FUNCTION">
+      <value>
+        <option name="FOREGROUND">ffd700</option>
+        <option name="FONT_TYPE">1</option>
+      </value>
+    </option>
+  </attributes>
+
+  <!-- 自定义类用白色 -->
+  <attributes>
+    <option name="JAVA_CUSTOM_CLASS">
+      <value>
+        <option name="FOREGROUND">ffffff</option>
+        <option name="FONT_TYPE">1</option>
+      </value>
+    </option>
+  </attributes>
+
+  <!-- 自定义方法用绿色（临时测试） -->
+  <attributes>
+    <option name="JAVA_CUSTOM_METHOD">
+      <value>
+        <option name="FOREGROUND">00ff00</option>
+        <option name="FONT_TYPE">1</option>
+      </value>
+    </option>
+  </attributes>
+
+  <!-- 系统内置对象用粉红色 -->
+  <attributes>
+    <option name="JAVA_BUILTIN_OBJECT">
+      <value>
+        <option name="FOREGROUND">ff69b4</option>
+        <option name="FONT_TYPE">1</option>
+      </value>
+    </option>
+  </attributes>
+</scheme>

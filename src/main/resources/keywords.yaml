@@ -1,0 +1,282 @@
+case_map:           # 关键词正确大小写（仅用于格式化关键词，不影响标识符/方法/类名）
+  # 声明/类型
+  dim: Dim
+  set: Set
+  # 过程/成员
+  function: Function
+  end function: End Function
+  sub: Sub
+  end sub: End Sub
+  property: Property
+  end property: End Property
+  class: Class
+  end class: End Class
+  public: Public
+  private: Private
+  # 条件
+  if: If
+  then: Then
+  else: Else
+  elseif: ElseIf
+  end if: End If
+  # 循环
+  for: For
+  next: Next
+  while: While
+  wend: Wend
+  do: Do
+  loop: Loop
+  each: Each
+  in: In
+  # 选择
+  select: Select
+  case: Case
+  end select: End Select
+  # 指令/开关
+  option: Option
+  explicit: Explicit
+  language: Language
+  codepage: CodePage
+  # 逻辑/比较/异常
+  is: Is
+  not: Not
+  and: And
+  or: Or
+  xor: Xor
+  eqv: Eqv
+  imp: Imp
+  mod: Mod
+  on: On
+  error: Error
+  resume: Resume
+  goto: GoTo
+
+keywords:          # 各类语句归类（用于缩进、空行、补全分组）
+  declaration: [dim, set, class, public, private, property, option, explicit]
+  procedure:   [function, sub, property]
+  condition:   [if, then, else, elseif, end if]
+  loop:        [for, next, while, wend, do, loop, each, in]
+  selection:   [select, case, end select]
+  exception:   [on, error, resume, goto]
+  logic:       [not, and, or, xor, eqv, imp, mod, is]
+
+objects:             # 内置对象与其常用方法/属性（用于方法名高亮/补全/参数提示）
+  Response:
+    methods:
+      - Write
+      - End
+      - Clear
+      - Flush
+      - Redirect
+      - AddHeader
+      - AppendToLog
+      - BinaryWrite
+      - CacheControl
+      - Charset
+      - ContentType
+      - Expires
+      - ExpiresAbsolute
+      - Buffer
+  Request:
+    methods:
+      - Form
+      - QueryString
+      - Cookies
+      - ServerVariables
+      - TotalBytes
+      - BinaryRead
+  Server:
+    methods:
+      - CreateObject
+      - HTMLEncode
+      - URLEncode
+      - MapPath
+      - ScriptTimeOut
+  Session:
+    methods:
+      - Abandon
+      - Timeout
+      - CodePage
+      - LCID
+  Application:
+    methods:
+      - Lock
+      - StaticObjects
+      - Contents
+      - Unlock
+  Err:
+    methods:
+      - Clear
+      - Raise
+      - Number
+      - Description
+      - Source
+
+# 内置函数（CamelCase 列表）。用于补全/参数提示；参与大小写格式化，内置函数格式化规则，大驼峰
+sys_functions:
+  # Date/Time
+  - CDate
+  - Date
+  - DateAdd
+  - DateDiff
+  - DatePart
+  - DateSerial
+  - DateValue
+  - Day
+  - FormatDateTime
+  - Hour
+  - IsDate
+  - Minute
+  - Month
+  - MonthName
+  - Now
+  - Second
+  - Time
+  - Timer
+  - TimeSerial
+  - TimeValue
+  - Weekday
+  - WeekdayName
+  - Year
+
+  # Conversion
+  - Asc
+  - CBool
+  - CByte
+  - CCur
+  - CDbl
+  - Chr
+  - CInt
+  - CLng
+  - CSng
+  - CStr
+  - Hex
+  - Oct
+
+  # Format
+  - FormatCurrency
+  - FormatNumber
+  - FormatPercent
+
+  # Math
+  - Abs
+  - Atn
+  - Cos
+  - Exp
+  - Fix
+  - Int
+  - Log
+  - Rnd
+  - Round
+  - Sgn
+  - Sin
+  - Sqr
+  - Tan
+
+  # Array
+  - Array
+  - Filter
+  - IsArray
+  - Join
+  - LBound
+  - ReDim
+  - Split
+  - UBound
+
+  # String
+  - InStr
+  - InStrRev
+  - LCase
+  - Left
+  - Len
+  - LTrim
+  - RTrim
+  - Trim
+  - Mid
+  - Replace
+  - Right
+  - Space
+  - StrComp
+  - String
+  - StrReverse
+  - UCase
+
+  # Others
+  - CreateObject
+  - Eval
+  - GetLocale
+  - GetObject
+  - GetRef
+  - InputBox
+  - IsEmpty
+  - IsNull
+  - IsNumeric
+  - IsObject
+  - LoadPicture
+  - MsgBox
+  - RGB
+  - ScriptEngine
+  - ScriptEngineBuildVersion
+  - ScriptEngineMajorVersion
+  - ScriptEngineMinorVersion
+  - SetLocale
+  - TypeName
+  - VarType
+
+# 按类别分组（可选，供更细致的 UI/补全用）
+sys_function_categories:
+  date_time: [CDate, Date, DateAdd, DateDiff, DatePart, DateSerial, DateValue, Day, FormatDateTime, Hour, IsDate, Minute, Month, MonthName, Now, Second, Time, Timer, TimeSerial, TimeValue, Weekday, WeekdayName, Year]
+  conversion: [Asc, CBool, CByte, CCur, CDbl, Chr, CInt, CLng, CSng, CStr, Hex, Oct]
+  format: [FormatCurrency, FormatNumber, FormatPercent]
+  math: [Abs, Atn, Cos, Exp, Fix, Int, Log, Rnd, Round, Sgn, Sin, Sqr, Tan]
+  array: [Array, Filter, IsArray, Join, LBound, ReDim, Split, UBound]
+  string: [InStr, InStrRev, LCase, Left, Len, LTrim, RTrim, Trim, Mid, Replace, Right, Space, StrComp, String, StrReverse, UCase]
+  other: [CreateObject, Eval, GetLocale, GetObject, GetRef, InputBox, IsEmpty, IsNull, IsNumeric, IsObject, LoadPicture, MsgBox, RGB, ScriptEngine, ScriptEngineBuildVersion, ScriptEngineMajorVersion, ScriptEngineMinorVersion, SetLocale, TypeName, VarType]
+
+operators:            # 运算符清单（用于格式化/高亮/校验的一致性）
+  # 算术 Arithmetic
+  arithmetic:
+    POWER: "^"
+    MULTIPLY: "*"
+    DIVIDE: "/"
+    INT_DIVIDE: "\\"   # 整除
+    PLUS: "+"
+    MINUS: "-"           # 二元减
+  # 一元运算（用于负号）
+  unary:
+    UNARY_MINUS: "-"
+  # 字符串连接
+  concatenate:
+    CONCATENATE: "&"
+  # 比较 Comparison（同时承担等号的相等比较）
+  comparison:
+    EQUALS: "="
+    NEQ: "<>"
+    LESS_THAN: "<"
+    GREATER_THAN: ">"
+    LESS_EQUAL: "<="
+    GREATER_EQUAL: ">="
+    IS: "is"
+  # 赋值（VBScript 使用同一符号 "="）
+  assignment: ["="]
+  # 逻辑 Logical（关键字型）
+  logical_keywords: [not, and, or, xor, eqv, imp]
+  # 标点/括号/分隔符（非运算但需要统一处理）
+  punctuation:
+    LPAREN: "("
+    RPAREN: ")"
+    LBRACKET: "["
+    RBRACKET: "]"
+    DOT: "."
+    COMMA: ","
+    SEMICOLON: ";"
+    COLON: ":"
+
+formatting:
+  # 这些分组内的符号两侧默认加空格（用于格式化管线），字符串/注释除外
+  operators_with_spaces: [arithmetic, concatenate, comparison, logical_keywords]
+  # 关键字类运算符中，额外明确需要空格的项（避免遗漏）
+  keywords_with_spaces: [mod, is]
+
+special_words:
+  - "@"

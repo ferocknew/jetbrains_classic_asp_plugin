@@ -1,0 +1,124 @@
+{
+  parserClass="com.ferock.classicasp.parser.ClassicASPParser"
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="ClassicAS"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.ferock.classicasp.psi"
+  psiImplPackage="com.ferock.classicasp.psi.impl"
+
+  elementTypeHolderClass="com.ferock.classicasp.psi.ClassicASTypes"
+  elementTypeClass="com.ferock.classicasp.psi.ClassicASType"
+  tokenTypeClass="com.ferock.classicasp.psi.ClassicASTokenType"
+}
+
+classicASPFile ::= file_content*
+
+private file_content ::= asp_block | free_text
+
+// 宽松的指令块：整体吞掉从<%@到%>之间的任意内容
+asp_directive_loose ::= ASP_DIRECTIVE_START (~ASP_CLOSE)* ASP_CLOSE
+
+// 传统指令规则（保留以便后续需要时恢复结构化），当前不参与顶层匹配
+asp_directive ::= ASP_DIRECTIVE_START asp_directive_content ASP_CLOSE
+private asp_directive_content ::= LANGUAGE_KEYWORD EQUALS STRING_LITERAL
+
+asp_block ::= ASP_OPEN asp_content ASP_CLOSE
+
+private asp_content ::= item_*
+
+private item_ ::= dim_statement | assignment_statement | if_statement | sub_statement
+
+// 自由文本：优先整体接收宽松指令块；否则按token拼接
+free_text ::= asp_directive_loose | free_text_token+
+private free_text_token ::= WHITE_SPACE
+                          | IDENTIFIER | STRING_LITERAL | NUMBER_LITERAL
+                          | LESS_THAN | GREATER_THAN | DOT | QUOTE | HASH
+                          | COMMA | LPAREN | RPAREN
+                          | EQUALS | NEQ | LESS_EQUAL | GREATER_EQUAL
+                          | ASP_DIRECTIVE_START | ASP_OPEN | ASP_CLOSE | LANGUAGE_KEYWORD
+                          | BAD_CHARACTER
+
+// 语句/表达式规则
+
+dim_statement ::= DIM variable_list {pin=1}
+
+variable_list ::= IDENTIFIER (COMMA IDENTIFIER)*
+
+assignment_statement ::= IDENTIFIER EQUALS expression {pin=1}
+
+if_statement ::= IF condition THEN statements (ELSE statements)? END_IF {pin=1}
+
+sub_statement ::= SUB IDENTIFIER LPAREN parameter_list? RPAREN statements END_SUB {pin=1}
+
+condition ::= expression comparison_operator expression
+
+statements ::= statement*
+
+statement ::= assignment_statement | if_statement | sub_statement
+
+parameter_list ::= IDENTIFIER (COMMA IDENTIFIER)*
+
+expression ::= IDENTIFIER | STRING_LITERAL | NUMBER_LITERAL | date_literal
+
+date_literal ::= HASH [^#]* HASH
+
+comparison_operator ::= EQUALS | LESS_THAN | GREATER_THAN
+
+// Token definitions
+ASP_OPEN ::= "<%"
+ASP_CLOSE ::= "%>"
+ASP_DIRECTIVE_START ::= "<%@"
+LANGUAGE_KEYWORD ::= "Language"
+DIM ::= "Dim"
+SET ::= "Set"
+RESPONSE ::= "Response"
+REQUEST ::= "Request"
+SERVER ::= "Server"
+SESSION ::= "Session"
+APPLICATION ::= "Application"
+WRITE ::= "Write"
+IF ::= "If"
+THEN ::= "Then"
+ELSE ::= "Else"
+ELSEIF ::= "ElseIf"
+END_IF ::= "End If"
+FOR ::= "For"
+NEXT ::= "Next"
+WHILE ::= "While"
+WEND ::= "Wend"
+DO ::= "Do"
+LOOP ::= "Loop"
+FUNCTION ::= "Function"
+SUB ::= "Sub"
+END_FUNCTION ::= "End Function"
+END_SUB ::= "End Sub"
+SELECT ::= "Select"
+CASE ::= "Case"
+END_SELECT ::= "End Select"
+CLASS ::= "Class"
+END_CLASS ::= "End Class"
+PUBLIC ::= "Public"
+PRIVATE ::= "Private"
+IDENTIFIER ::= [a-zA-Z_][a-zA-Z0-9_]*
+
+// 基础 token 类型
+WHITE_SPACE ::= [ \t\n\x0B\f\r]+
+COMMENT ::= '.*
+STRING_LITERAL ::= "[^"]*"
+NUMBER_LITERAL ::= [0-9]+(\.[0-9]+)?
+BAD_CHARACTER ::= .
+
+// 运算符和标点
+EQUALS ::= "="
+LESS_THAN ::= "<"
+GREATER_THAN ::= ">"
+NEQ ::= "<>"
+LESS_EQUAL ::= "<="
+GREATER_EQUAL ::= ">="
+COMMA ::= ","
+LPAREN ::= "("
+RPAREN ::= ")"
+HASH ::= "#"
+DOT ::= "."
+QUOTE ::= "\""

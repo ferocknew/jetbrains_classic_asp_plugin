@@ -1,0 +1,56 @@
+<idea-plugin>
+    <id>com.ferock.classicasp</id>
+    <name>Classic ASP Support</name>
+    <version>1.0.8</version>
+    <vendor email="ferock@gmail.com" url="https://www.ferock.net">ferock</vendor>
+
+    <description><![CDATA[
+    Classic ASP language support for JetBrains IDEs.
+
+    Features:
+    - Syntax highlighting for Classic ASP
+    - Code formatting
+    - Function completion
+    - Function navigation
+    - Parameter hints
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- File Type -->
+        <fileType name="ClassicASP" implementationClass="com.ferock.classicasp.ClassicASPFileType" fieldName="INSTANCE" language="ClassicASP" extensions="asp"/>
+
+        <!-- Language support -->
+        <language id="ClassicASP" implementationClass="com.ferock.classicasp.ClassicASPLanguage" />
+
+        <!-- 将 PSI 的 TEXT 语言在 .asp 文件上替换为 ClassicASP（保持无解析，无红线） -->
+        <lang.substitutor language="TEXT" implementationClass="com.ferock.classicasp.ClassicASPLanguageSubstitutor"/>
+
+        <!-- 仅保留语法高亮器（禁用解析与验证，避免PsiError导致的红浪线） -->
+        <lang.syntaxHighlighterFactory language="ClassicASP"
+                                       implementationClass="com.ferock.classicasp.highlighter.ClassicASPSyntaxHighlighterFactory" />
+
+        <!-- Color Scheme -->
+        <colorSchemePalette>
+            <colorScheme name="Classic ASP Java Colors" path="/colors/ClassicASPJavaColors.xml"/>
+        </colorSchemePalette>
+
+        <!-- Code Formatting -->
+        <lang.formatter language="ClassicASP" implementationClass="com.ferock.classicasp.formatting.ClassicASPFormattingModelBuilder" />
+        <postFormatProcessor implementation="com.ferock.classicasp.formatting.CaseFormatProcessor"/>
+        <postFormatProcessor implementation="com.ferock.classicasp.formatting.BlankLineProcessor"/>
+
+        <!-- Code Completion: 放宽language限制，结合 ASPSectionDetector 过滤 -->
+        <completion.contributor language="any" implementationClass="com.ferock.classicasp.completion.ClassicASPCompletionContributor"/>
+
+        <!-- Typed handler 扩展点（按键自动弹出补全） -->
+        <codeInsight.editorActions.typedHandler implementationClass="com.ferock.classicasp.completion.ClassicASPTypedHandler"/>
+
+        <!-- 已禁用：解析器与注解器（仅高亮） -->
+        <!-- <lang.parserDefinition language="ClassicASP" implementationClass="com.ferock.classicasp.ClassicASPParserDefinition"/> -->
+        <!-- <annotator language="ClassicASP" implementationClass="com.ferock.classicasp.validation.ClassicASPSyntaxValidator"/> -->
+
+    </extensions>
+</idea-plugin>
