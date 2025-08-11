@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.ferock"
-version = "1.0.9"
+version = "1.0.10"
 
 // Include the generated files in the source set
 sourceSets {

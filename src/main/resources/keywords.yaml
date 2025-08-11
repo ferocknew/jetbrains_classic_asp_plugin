@@ -50,6 +50,9 @@ case_map:           # 关键词正确大小写（仅用于格式化关键词，�
   error: Error
   resume: Resume
   goto: GoTo
+  # 布尔/特殊值（必须加引号，避免 YAML 将值解析为布尔类型）
+  true: "True"
+  false: "False"
 
 keywords:          # 各类语句归类（用于缩进、空行、补全分组）
   declaration: [dim, set, class, public, private, property, option, explicit]
