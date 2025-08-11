@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.ferock.classicasp</id>
     <name>Classic ASP Support</name>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <vendor email="ferock@gmail.com" url="https://www.ferock.net">ferock</vendor>
 
     <description><![CDATA[
