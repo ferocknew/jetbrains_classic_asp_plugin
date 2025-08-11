@@ -5,7 +5,7 @@
 - 这是一个 jetbrains 编辑器插件，语言：classic asp
 - 插件名称：jetbrains_classic_asp_plugin
 - 插件作者：ferock : ferock@gmail.com
-- 插件版本：1.0.6
+- 插件版本：1.0.9
 - 实现语言： java
 - java 版本：24
 - gradle 版本：8.14
